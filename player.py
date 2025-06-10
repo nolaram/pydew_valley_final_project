@@ -14,6 +14,7 @@ class Player(pygame.sprite.Sprite):
 		# general setup
 		self.image = self.animations[self.status][self.frame_index]
 		self.rect = self.image.get_rect(center = pos)
+		self.z = LAYERS['main']
 
 		# movement attributes
 		self.direction = pygame.math.Vector2()
@@ -54,7 +55,7 @@ class Player(pygame.sprite.Sprite):
 						   'right_water':[],'left_water':[],'up_water':[],'down_water':[]}
 
 		for animation in self.animations.keys():
-			full_path = 'graphics/character/' + animation
+			full_path = '../graphics/character/' + animation
 			self.animations[animation] = import_folder(full_path)
 
 	def animate(self,dt):
