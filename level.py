@@ -20,7 +20,7 @@ class Level:
 		self.player = Player((640,360), self.all_sprites)
 		Generic(
 			pos = (0,0),
-			surf = pygame.image.load('../graphics/world/ground.png').convert_alpha(),
+			surf = pygame.image.load('graphics/world/ground.png').convert_alpha(),
 			groups = self.all_sprites,
 			z = LAYERS['ground'])
 
