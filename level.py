@@ -35,7 +35,7 @@ class Level:
 			Generic((x * TILE_SIZE,y * TILE_SIZE), surf, self.all_sprites)
 
 		# water 
-		water_frames = import_folder('../graphics/water')
+		water_frames = import_folder('graphics/water')
 		for x, y, surf in tmx_data.get_layer_by_name('Water').tiles():
 			Water((x * TILE_SIZE,y * TILE_SIZE), water_frames, self.all_sprites)
 
@@ -50,7 +50,7 @@ class Level:
 		self.player = Player((640,360), self.all_sprites)
 		Generic(
 			pos = (0,0),
-			surf = pygame.image.load('../graphics/world/ground.png').convert_alpha(),
+			surf = pygame.image.load('graphics/world/ground.png').convert_alpha(),
 			groups = self.all_sprites,
 			z = LAYERS['ground'])
 
