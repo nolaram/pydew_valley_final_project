@@ -21,7 +21,7 @@ class Level:
 		self.overlay = Overlay(self.player)
 
 	def setup(self):
-		tmx_data = load_pygame('data/map.tmx')
+		tmx_data = load_pygame('../data/map.tmx')
 
 		# house 
 		for layer in ['HouseFloor', 'HouseFurnitureBottom']:
@@ -37,13 +37,18 @@ class Level:
 			Generic((x * TILE_SIZE,y * TILE_SIZE), surf, [self.all_sprites, self.collision_sprites])
 
 		# water 
-		water_frames = import_folder('graphics/water')
+		water_frames = import_folder('../graphics/water')
 		for x, y, surf in tmx_data.get_layer_by_name('Water').tiles():
 			Water((x * TILE_SIZE,y * TILE_SIZE), water_frames, self.all_sprites)
 
 		# trees 
 		for obj in tmx_data.get_layer_by_name('Trees'):
-			Tree((obj.x, obj.y), obj.image, [self.all_sprites, self.collision_sprites, self.tree_sprites], obj.name)
+			Tree(
+				pos = (obj.x, obj.y), 
+				surf = obj.image, 
+				groups = [self.all_sprites, self.collision_sprites, self.tree_sprites], 
+				name = obj.name,
+				player_add = self.player_add)
 
 		# wildflowers 
 		for obj in tmx_data.get_layer_by_name('Decoration'):
@@ -63,9 +68,13 @@ class Level:
 					tree_sprites = self.tree_sprites)
 		Generic(
 			pos = (0,0),
-			surf = pygame.image.load('graphics/world/ground.png').convert_alpha(),
+			surf = pygame.image.load('../graphics/world/ground.png').convert_alpha(),
 			groups = self.all_sprites,
 			z = LAYERS['ground'])
+
+	def player_add(self,item):
+
+		self.player.item_inventory[item] += 1
 
 	def run(self,dt):
 		self.display_surface.fill('black')
