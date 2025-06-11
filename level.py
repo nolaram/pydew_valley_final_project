@@ -38,9 +38,14 @@ class Level:
 		self.menu = Menu(self.player, self.toggle_shop)
 		self.shop_active = False
 
+		# music
+		self.success = pygame.mixer.Sound('audio/success.wav')
+		self.success.set_volume(0.3)
+		self.music = pygame.mixer.Sound('audio/music.mp3')
+		self.music.play(loops = -1)
 
 	def setup(self):
-		tmx_data = load_pygame('data/map.tmx')
+		tmx_data = load_pygame('../data/map.tmx')
 
 		# house 
 		for layer in ['HouseFloor', 'HouseFurnitureBottom']:
@@ -105,6 +110,7 @@ class Level:
 	def player_add(self,item):
 
 		self.player.item_inventory[item] += 1
+		self.success.play()
 
 	def toggle_shop(self):
 
