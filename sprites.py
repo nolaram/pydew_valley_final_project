@@ -63,12 +63,12 @@ class Tree(Generic):
 		# tree attributes
 		self.health = 5
 		self.alive = True
-		stump_path = f'../graphics/stumps/{"small" if name == "Small" else "large"}.png'
+		stump_path = f'graphics/stumps/{"small" if name == "Small" else "large"}.png'
 		self.stump_surf = pygame.image.load(stump_path).convert_alpha()
 		self.invul_timer = Timer(200)
 
 		# apples
-		self.apple_surf = pygame.image.load('../graphics/fruit/apple.png')
+		self.apple_surf = pygame.image.load('graphics/fruit/apple.png')
 		self.apple_pos = APPLE_POS[name]
 		self.apple_sprites = pygame.sprite.Group()
 		self.create_fruit()
